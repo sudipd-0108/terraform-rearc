@@ -6,7 +6,7 @@ yum install docker -y
 service docker start
 
 yum install git -y
-cd /root/quest
+cd /root
 git clone https://github.com/rearc/quest
 cat <<EOF >/root/quest/Dockerfile
 FROM node:10
