@@ -16,6 +16,6 @@ module "ec2_public" {
     module.vpc.public_subnets[1]
   ]  
   vpc_security_group_ids = [module.public_sg.this_security_group_id]
-  user_data              = file("user-data.sh")
+  user_data              = "${file("user-data.sh")}"
 }
 
