@@ -28,5 +28,5 @@ CMD [ "npm", "start" ]
 EOF
 cd /root/quest
 docker build -t quest:v1 .
-docker container run -p 3000:3000 -e SECRET_WORD='quest001001222' -d quest:v1 
+docker container run -p 3000:3000 -e SECRET_WORD='quest001001222' --user 1000:1000 -d quest:v1 
 
