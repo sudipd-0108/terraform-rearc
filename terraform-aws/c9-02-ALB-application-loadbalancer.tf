@@ -1,7 +1,7 @@
 # Terraform AWS Application Load Balancer (ALB)
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "5.16.0"
+  version = "8.1.0"
 
   depends_on = [ module.ec2_public, module.vpc ]
   name = var.lb_name
@@ -19,7 +19,15 @@ module "alb" {
       protocol           = "HTTP"
       target_group_index = 0 # App1 TG associated to this listener
     }
-  ]  
+  ]
+  https_listeners = [
+    {
+      port               = 443
+      protocol           = "HTTPS"
+      certificate_arn    = aws_acm_certificate.cert.id 
+      target_group_index = 0
+    }  
+  ]
   # Target Groups
   target_groups = [
     # App1 Target Group - TG Index = 0
